@@ -12,6 +12,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 👇 Add this temporary debug step before Docker login
+      - name: Debug secrets (remove after testing)
+        run: |
+          echo "Username is set: ${{ secrets.DOCKERHUB_USER != '' }}"
+          echo "Token is set: ${{ secrets.DOCKERHUB_TOKEN != '' }}"
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
